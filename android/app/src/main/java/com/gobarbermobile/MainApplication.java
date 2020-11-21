@@ -1,4 +1,4 @@
-package com.gobarbermobile;
+package com.servicoaqui;
 
 import android.app.Application;
 import android.content.Context;
