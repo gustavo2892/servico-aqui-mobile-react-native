@@ -45,12 +45,14 @@ export function* signUp({payload}) {
     yield call(api.post, 'users', {
       name,
       email,
+      whatsapp: '-',
       password,
     });
+    Alert.alert('Sucesso', 'Cadastro criado com sucesso');
 
     // history.push('/');
   } catch (err) {
-    Alert.alert('Falha na cadastro', 'Verifique seus dados');
+    Alert.alert('Falha na cadastro', 'Verifique seus dados caiu nesse');
 
     yield put(signFailure());
   }
