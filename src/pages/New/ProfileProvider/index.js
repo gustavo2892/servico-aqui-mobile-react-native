@@ -18,6 +18,7 @@ import { Container,
     ContactButton, 
     ContactButtonText, 
     AvatarContainer, 
+    Text,
     ReportButtom} from './styles';
 
 export default function SelectDateTime({ navigation }) {
@@ -79,10 +80,15 @@ export default function SelectDateTime({ navigation }) {
               <ProfileInfo>
               <Name>{provider.name}</Name>
               <Subject>Categoria</Subject>
+              <Text>State da categoria</Text>
               <Subject>Cidade</Subject>
-              <Subject>Descrição</Subject>
+              <Text>State da cidade</Text>
+              <Subject>Descrição do usuário</Subject>
+              <Text>State da descripton</Text>
               <Subject>Preço</Subject>
+              <Text>State do price</Text>
               <Subject>Contato</Subject>
+              <Text>State do contact</Text>
              
               </ProfileInfo>
               <Footer>

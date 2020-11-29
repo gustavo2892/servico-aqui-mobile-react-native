@@ -48,18 +48,25 @@ export const ProfileContainer = styled.View`
 `;
 
 export const Name = styled.Text`
-  color: #32264d;
+  color: black;
   font-size: 26px;
   font-weight: bold;
 
 `;
 
 export const Subject = styled.Text`
-  color: #6a6180;
+  color: black;
   font-size: 18px;
   font-weight: bold;
   margin-top: 4px;
 `;
+
+export const Text = styled.Text`
+  color: black;
+  font-size: 16px;
+  margin-top: 4px;
+`;
+
 
 export const Footer = styled.View`
   margin-top: 14px;

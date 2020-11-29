@@ -14,7 +14,13 @@ export default function Appointment({data, onCancel}) {
     });
   }, [data.date]);
 
-  console.log('data provider', data.provider)
+  function handleLinkToWhatsapp() {
+    // api.post('connections', {
+    //   user_id: teacher.id,
+    // });
+
+    //Linking.openURL(`whatsapp://send?phone=${teacher.whatsapp}`);
+  }
   return (
     <Container past={data.past}>
       <Left>
