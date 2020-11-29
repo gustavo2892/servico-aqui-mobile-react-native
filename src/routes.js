@@ -6,6 +6,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
 import SelectProvider from '~/pages/New/SelectProvider';
+import ProfileProvider from '~/pages/New/ProfileProvider';
 import SelectDateTime from '~/pages/New/SelectDateTime';
 import Confirm from '~/pages/New/Confirm';
 
@@ -27,6 +28,7 @@ export default (isSigned = false) =>
               screen: createStackNavigator(
                 {
                   SelectProvider,
+                  ProfileProvider,
                   SelectDateTime,
                   Confirm,
                 },

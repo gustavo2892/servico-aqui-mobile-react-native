@@ -5,7 +5,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import api from '../../../services/api';
 import Background from '../../../components/Background';
 
-import { Container, ProvidersList, Provider, Avatar, Name } from './styles';
+import { Container, ProvidersList, Avatar, Name, Profile, ProfileInfo, Subject } from './styles';
 import avatar from '../../../assets/avatar.png';
 
 export default function SelectProvider({ navigation }) {
@@ -28,9 +28,11 @@ export default function SelectProvider({ navigation }) {
           data={providers}
           keyExtractor={provider => String(provider.id)}
           renderItem={({ item: provider }) => (
-            <Provider
+            <Profile
               onPress={() =>
-                navigation.navigate('SelectDateTime', { provider })
+                navigation.navigate('ProfileProvider', { provider })
+              // onPress={() =>
+              //   navigation.navigate('SelectDateTime', { provider })
               }
             >
               {
@@ -46,8 +48,12 @@ export default function SelectProvider({ navigation }) {
                   source={avatar}
                 />
               }
+              <ProfileInfo>
               <Name>{provider.name}</Name>
-            </Provider>
+            <Subject>Categoria</Subject>
+              </ProfileInfo>
+             
+            </Profile>
           )}
         />
 
