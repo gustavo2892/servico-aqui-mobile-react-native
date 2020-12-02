@@ -50,9 +50,9 @@ export function* signUp({payload}) {
     });
     Alert.alert('Sucesso', 'Cadastro criado com sucesso');
 
-    // history.push('/');
+     //history.push('/');
   } catch (err) {
-    Alert.alert('Falha na cadastro', 'Verifique seus dados caiu nesse');
+    Alert.alert('Falha na cadastro', 'Verifique seus dados.');
 
     yield put(signFailure());
   }

@@ -1,7 +1,7 @@
 import React, {useMemo} from 'react';
 import {parseISO, formatRelative} from 'date-fns';
 import pt from 'date-fns/locale/pt';
-import {TouchableOpacity, Image} from 'react-native';
+import {TouchableOpacity, Image, Linking} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import {Container, Left, Avatar, Info, Name, Time, ContactButton, ContactButtonText} from './styles';
 import whatsappIcon from '../../assets/icons/whatsapp.png';
@@ -19,8 +19,10 @@ export default function Appointment({data, onCancel}) {
     //   user_id: teacher.id,
     // });
 
-    //Linking.openURL(`whatsapp://send?phone=${teacher.whatsapp}`);
+    Linking.openURL(`whatsapp://send?phone=${data.provider.whatsapp}`);
   }
+ 
+console.log('data=>', data.provider)
   return (
     <Container past={data.past}>
       <Left>
@@ -35,7 +37,7 @@ export default function Appointment({data, onCancel}) {
         <Info>
           <Name>{data.provider.name}</Name>
           <Time>{dateParsed}</Time>
-         <ContactButton>
+         <ContactButton  onPress={handleLinkToWhatsapp}>
             <Image source={whatsappIcon} />
             <ContactButtonText>Entrar em contato</ContactButtonText>
           </ContactButton>

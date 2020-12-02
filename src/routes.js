@@ -12,6 +12,7 @@ import Confirm from '~/pages/New/Confirm';
 
 import Dashboard from '~/pages/Dashboard';
 import Profile from '~/pages/Profile';
+import Announcement from '~/pages/Announcement'
 
 export default (isSigned = false) =>
   createAppContainer(
@@ -54,6 +55,7 @@ export default (isSigned = false) =>
                 ),
               },
             },
+            Announcement,
             Profile,
           },
           {

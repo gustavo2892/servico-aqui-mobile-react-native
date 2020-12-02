@@ -27,6 +27,8 @@ export default function Confirm({ navigation }) {
     navigation.navigate('Dashboard');
   }
 
+  console.log('provider teste', provider)
+
   return (
     <Background>
       <Container>

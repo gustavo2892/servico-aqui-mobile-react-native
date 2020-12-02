@@ -21,7 +21,7 @@ import { Container,
     Text,
     ReportButtom} from './styles';
 
-export default function SelectDateTime({ navigation }) {
+export default function ProfileProvider({ navigation }) {
   const [date, setDate] = useState(new Date());
   const [hours, setHours] = useState([]);
 
@@ -52,9 +52,9 @@ export default function SelectDateTime({ navigation }) {
     <Background>
       <Container>
       <Provider
-              onPress={() =>
-                navigation.navigate('SelectDateTime', { provider })
-              }
+              // onPress={() =>
+              //   navigation.navigate('SelectDateTime', { provider })
+              // }
             >
               {/* {
                 provider.avatar ?
@@ -80,24 +80,25 @@ export default function SelectDateTime({ navigation }) {
               <ProfileInfo>
               <Name>{provider.name}</Name>
               <Subject>Categoria</Subject>
-              <Text>State da categoria</Text>
-              <Subject>Cidade</Subject>
-              <Text>State da cidade</Text>
-              <Subject>Descrição do usuário</Subject>
-              <Text>State da descripton</Text>
+              <Text>{provider.category}</Text>
+              <Subject>Descrição do prestador</Subject>
+              <Text>{provider.description}</Text>
               <Subject>Preço</Subject>
-              <Text>State do price</Text>
-              <Subject>Contato</Subject>
-              <Text>State do contact</Text>
+              <Text>R$ {provider.price}</Text>
+             
              
               </ProfileInfo>
               <Footer>
-              <ButtonsContainer>
-                <ContactButton>
+              <ButtonsContainer
+             
+              >
+                <ContactButton
+                onPress={() =>
+                  navigation.navigate('SelectDateTime', { provider })
+                }>
+
                 <ContactButtonText
-                  onPress={() =>
-                    navigation.navigate('SelectDateTime', { provider })
-                  }
+  
                 >Horários</ContactButtonText>
                 </ContactButton>
               </ButtonsContainer>
@@ -111,7 +112,7 @@ export default function SelectDateTime({ navigation }) {
   );
 }
 
-SelectDateTime.navigationOptions = ({ navigation }) => ({
+ProfileProvider.navigationOptions = ({ navigation }) => ({
   title: 'Perfil do Usuário',
   headerLeft: () => (
     <TouchableOpacity onPress={() => navigation.goBack()}>

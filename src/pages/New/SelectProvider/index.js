@@ -5,10 +5,10 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import api from '../../../services/api';
 import Background from '../../../components/Background';
 
-import { Container, ProvidersList, Avatar, Name, Profile, ProfileInfo, Subject } from './styles';
+import { Container, ProvidersList, Avatar, Name, Provider, ProfileInfo, CategoryText } from './styles';
 import avatar from '../../../assets/avatar.png';
 
-export default function SelectProvider({ navigation }) {
+export default function ProfileProvider({ navigation }) {
   const [providers, setProviders] = useState([]);
 
   useEffect(() => {
@@ -21,18 +21,19 @@ export default function SelectProvider({ navigation }) {
     loadProviders();
   }, []);
 
+console.log('providers',providers)
+
   return (
+    
     <Background>
       <Container>
         <ProvidersList
           data={providers}
           keyExtractor={provider => String(provider.id)}
           renderItem={({ item: provider }) => (
-            <Profile
+            <Provider
               onPress={() =>
                 navigation.navigate('ProfileProvider', { provider })
-              // onPress={() =>
-              //   navigation.navigate('SelectDateTime', { provider })
               }
             >
               {
@@ -48,12 +49,9 @@ export default function SelectProvider({ navigation }) {
                   source={avatar}
                 />
               }
-              <ProfileInfo>
               <Name>{provider.name}</Name>
-            <Subject>Categoria</Subject>
-              </ProfileInfo>
-             
-            </Profile>
+            <Text>{provider.category}</Text>
+            </Provider>
           )}
         />
 
@@ -62,7 +60,7 @@ export default function SelectProvider({ navigation }) {
   );
 }
 
-SelectProvider.navigationOptions = ({ navigation }) => ({
+ProfileProvider.navigationOptions = ({ navigation }) => ({
   title: 'Selecione o prestador',
   headerLeft: () => (
     <TouchableOpacity onPress={() => navigation.navigate('Dashboard')}>
