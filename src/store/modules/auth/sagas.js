@@ -39,6 +39,7 @@ export function* signIn({payload}) {
 }
 
 export function* signUp({payload}) {
+
   try {
     const {name, email, password} = payload;
 
@@ -50,7 +51,7 @@ export function* signUp({payload}) {
     });
     Alert.alert('Sucesso', 'Cadastro criado com sucesso');
 
-     //history.push('/');
+
   } catch (err) {
     Alert.alert('Falha na cadastro', 'Verifique seus dados.');
 
