@@ -1,8 +1,9 @@
 import React, {useRef, useState, useEffect} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import Background from '~/components/Background';
+import { Alert } from 'react-native';
 
+import api from '../../services/api';
 import {
   Container,
   Title,
@@ -11,36 +12,59 @@ import {
   SubmitButton,
   LogoutButton,
 } from './styles';
-import {updateProfileRequest} from '~/store/modules/user/actions';
-import {signOut} from '~/store/modules/auth/actions';
 
 export default function Annoucement() {
-  const profile = useSelector(state => state.user.profile);
-  const dispatch = useDispatch();
   const emailRef = useRef();
-
-  const token = useSelector(state => state.auth.token)
 
   const [title, setTitle] = useState('');
   const [whatsapp, setWhatsapp] = useState('');
   const [description, setDescription] = useState('');
- 
-  const loading = useSelector(state => state.auth.loading);
+  const [visibleButton, setVisibleButton] = useState(false);
 
-  function handleSubmit() {
-    dispatch(
-      updateProfileRequest({
-        name,
-        email,
-        oldPassword,
-        password,
-        confirmPassword,
-      }),
+  useEffect(() => {
+    async function loadAnnouncement() {
+      const response = await api.get('announcements');
+
+      const data = response.data;
+
+      if (data !== null) {
+        setVisibleButton(true);
+        setTitle(data.title);
+        setWhatsapp(data.whatsapp);
+        setDescription(data.description);
+      }
+    }
+
+    loadAnnouncement();
+  }, []);
+
+  async function handleSubmit() {
+    const response = await api.post('announcements', {
+      title,
+      whatsapp,
+      description
+    });
+
+    Alert.alert(
+      'Sucesso',
+      'O anúncio foi criado com sucesso.',
     );
+
+    setVisibleButton(true);
   }
 
-  function handleLogout() {
-    dispatch(signOut());
+  async function handleDelete() {
+    await api.delete('announcements');
+
+    Alert.alert(
+      'Sucesso',
+      'O anúncio foi deletado com sucesso.',
+    );
+
+    setVisibleButton(false);
+    setTitle('');
+    setWhatsapp('');
+    setDescription('');
   }
 
   return (
@@ -68,7 +92,7 @@ export default function Annoucement() {
             onSubmitEditing={() => emailRef.current.focus()}
             value={whatsapp}
             onChangeText={setWhatsapp}
-          />     
+          />
           <FormInput
             icon="sort"
             autoCorrect={false}
@@ -78,14 +102,19 @@ export default function Annoucement() {
             onSubmitEditing={() => emailRef.current.focus()}
             value={description}
             onChangeText={setDescription}
-          />     
-
-          <SubmitButton loading={loading} onPress={handleSubmit}>
-            Criar Serviço
-          </SubmitButton>
-          <LogoutButton loading={loading} onPress={handleLogout}>
-            Deletar
-          </LogoutButton>
+          />
+          {
+            !visibleButton &&
+            <SubmitButton onPress={() => handleSubmit()}>
+              Criar Serviço
+            </SubmitButton>
+          }
+          {
+            visibleButton &&
+            <LogoutButton onPress={() => handleDelete()} >
+              Deletar
+            </LogoutButton>
+          }
         </Form>
       </Container>
     </Background>

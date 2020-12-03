@@ -37,7 +37,7 @@ export const FormTextInput = styled(TextInput)`
 `;
 
 export const SubmitButton = styled(Button)`
-  margin-top: 80px;
+  margin-top: 10px;
 `;
 
 export const LogoutButton = styled(Button)`
