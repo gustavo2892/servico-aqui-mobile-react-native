@@ -50,7 +50,11 @@ console.log('providers',providers)
                 />
               }
               <Name>{provider.name}</Name>
-            <Text>{provider.category}</Text>
+              {
+                provider.category ?
+                <Text>{provider.category}</Text> : null
+              }
+          
             </Provider>
           )}
         />

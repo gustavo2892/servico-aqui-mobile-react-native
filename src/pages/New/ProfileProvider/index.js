@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { TouchableOpacity } from 'react-native';
+import { TouchableOpacity, View } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import AvatarTest from '../../../assets/avatar.png';
 
@@ -79,12 +79,29 @@ export default function ProfileProvider({ navigation }) {
              
               <ProfileInfo>
               <Name>{provider.name}</Name>
+              {
+                provider.category ? 
+                <View>
               <Subject>Categoria</Subject>
               <Text>{provider.category}</Text>
+                </View> : null
+              }
+               {
+                provider.description ? 
+                <View>
               <Subject>Descrição do prestador</Subject>
               <Text>{provider.description}</Text>
-              <Subject>Preço</Subject>
-              <Text>R$ {provider.price}</Text>
+                </View> : null
+              }
+              
+              {
+                provider.price ? 
+                <View>
+              <Subject>Categoria</Subject>
+              <Text>{provider.price}</Text>
+                </View> : null
+              }
+            
              
              
               </ProfileInfo>
