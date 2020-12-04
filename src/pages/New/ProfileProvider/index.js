@@ -97,7 +97,7 @@ export default function ProfileProvider({ navigation }) {
               {
                 provider.price ? 
                 <View>
-              <Subject>Categoria</Subject>
+              <Subject>Preço</Subject>
               <Text>{provider.price}</Text>
                 </View> : null
               }
