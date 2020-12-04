@@ -1,8 +1,10 @@
 import React, { useMemo } from 'react';
-import { formatRelative, parseISO } from 'date-fns';
+import { parseISO } from 'date-fns';
 import pt from 'date-fns/locale/pt';
 import { TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import format from 'date-fns/format';
+import sub from 'date-fns/sub';
 
 import api from '../../../services/api';
 import Background from '../../../components/Background';
@@ -13,10 +15,7 @@ export default function Confirm({ navigation }) {
   const provider = navigation.getParam('provider');
   const time = navigation.getParam('time');
 
-  const dateFormatted = useMemo(
-    () => formatRelative(parseISO(time), new Date(), { locale: pt }),
-    [time]
-  );
+  const dateFormatted = format(sub(parseISO(time), {hours: 3}), 'HH:mm', { locale: pt });
 
   async function handleAddAppointment() {
     await api.post('appointments', {
@@ -26,8 +25,6 @@ export default function Confirm({ navigation }) {
 
     navigation.navigate('Dashboard');
   }
-
-  console.log('provider teste', provider)
 
   return (
     <Background>
@@ -40,9 +37,7 @@ export default function Confirm({ navigation }) {
           }}
         />
         <Name>{provider.name}</Name>
-
         <Time>{dateFormatted}</Time>
-
         <SubmitButton onPress={handleAddAppointment}>
           CONFIRMAR AGENDAMENTO
         </SubmitButton>
